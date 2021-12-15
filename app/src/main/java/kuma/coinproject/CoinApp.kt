@@ -1,7 +1,6 @@
 package kuma.coinproject
 
 import android.app.Application
-import kuma.coinproject.di.module.appModule
 import kuma.coinproject.di.module.moduleList
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

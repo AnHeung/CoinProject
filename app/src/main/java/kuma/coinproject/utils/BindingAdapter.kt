@@ -2,6 +2,7 @@ package kuma.coinproject.utils
 
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -26,6 +27,18 @@ fun setProgress(view: View, isProgress: LiveData<Boolean>?) {
                     }
                 }
             }
+        })
+    }
+}
+
+@BindingAdapter("setText")
+fun setText(view:TextView , textLiveData : LiveData<String>?){
+    val parentActivity = view.getParentActivity()
+
+    if (parentActivity != null && textLiveData != null) {
+
+        textLiveData.observe(parentActivity, Observer {
+            view.text = it
         })
     }
 }

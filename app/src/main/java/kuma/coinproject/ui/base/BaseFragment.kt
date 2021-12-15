@@ -28,8 +28,12 @@ abstract class BaseFragment<V: ViewDataBinding> : Fragment(){
             lifecycleOwner = viewLifecycleOwner
             initBinding()
             executePendingBindings()
-            bindingLiveData()
             dataBinding.root
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bindingLiveData()
     }
 }

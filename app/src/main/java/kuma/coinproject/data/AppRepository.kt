@@ -2,10 +2,8 @@ package kuma.coinproject.data
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.withContext
 import kuma.coinproject.data.adapter.model.CoinAdapterItem
 import kuma.coinproject.data.api.AppApiService
-import kuma.coinproject.data.api.CoinApiService
 
 class AppRepository(private val apiService: AppApiService) {
 
@@ -19,5 +17,10 @@ class AppRepository(private val apiService: AppApiService) {
             .map { CoinAdapterItem(it.id , it.rank.toString(), it.name) }
             .toList()
         emit(coinList)
+    }.flowOn(IO)
+
+    suspend fun coinDetailItem (coinId :String) = flow {
+        val coinDetailItem = apiService.getCoinDetail(coinId)
+        emit(coinDetailItem)
     }.flowOn(IO)
 }

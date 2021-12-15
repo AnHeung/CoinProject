@@ -1,7 +1,5 @@
 package kuma.coinproject.ui.coin
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kuma.coinproject.R
 import kuma.coinproject.databinding.FragmentCoinBinding
@@ -25,6 +23,7 @@ class CoinFragment(override var layoutId: Int = R.layout.fragment_coin) :
         }
     }
 
+
     override fun bindingLiveData() {
         coinViewModel.apply {
             getCoinList()
@@ -34,7 +33,7 @@ class CoinFragment(override var layoutId: Int = R.layout.fragment_coin) :
                 coinAdapter.submitList(it)
             })
 
-            coinClick.observe(viewLifecycleOwner ,  {coinId->
+            coinClick.observe(viewLifecycleOwner ,  { coinId->
                 println("왜 안됨?")
                 if(isLiveDataResume()){
                     coinId?.let {

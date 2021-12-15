@@ -43,7 +43,7 @@ class CoinViewModel(private val appRepository: AppRepository) : ViewModel() {
     }
 
     fun onCoinClick(coinName : String?){
-        println("onCoinClick")
+        println("coinName: $coinName")
         coinName?.let {
             _coinClick.value = it
         }

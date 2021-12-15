@@ -18,7 +18,8 @@
         android:id="@+id/coinDetailFragment"
         android:name="kuma.coinproject.ui.coin_detail.CoinDetailFragment"
         tools:layout="@layout/fragment_coin_detail"
-        android:label="CoinDetailFragment" >
+        android:label="CoinDetailFragment"
+         >
 
         <argument
             android:name="coinId"

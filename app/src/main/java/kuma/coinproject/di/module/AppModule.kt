@@ -9,6 +9,8 @@ import kuma.coinproject.data.api.AppApiService
 import kuma.coinproject.data.api.CoinApiService
 import kuma.coinproject.ui.adapter.CoinAdapter
 import kuma.coinproject.ui.coin.CoinViewModel
+import kuma.coinproject.ui.coin_detail.CoinDetailViewModel
+import kuma.coinproject.utils.API_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -33,7 +35,7 @@ val apiModule = module {
     single {
         Retrofit.Builder()
             .run {
-                baseUrl("https://api.coinpaprika.com/v1/")
+                baseUrl(API_URL)
                 client(get())
                 addConverterFactory(GsonConverterFactory.create(get()))
                 build()
@@ -81,9 +83,17 @@ val coinModule = module {
         CoinAdapter(get(), CoinAdapter.CoinViewHolder::class.java , R.layout.item_coin, get())
     }
 
-    viewModel {
+    single {
         CoinViewModel(get())
     }
 }
 
-val moduleList = listOf(appModule, apiModule, coinModule)
+val coinDetailModule = module {
+
+    viewModel {
+        CoinDetailViewModel(get())
+    }
+
+}
+
+val moduleList = listOf(appModule, apiModule, coinModule, coinDetailModule)
