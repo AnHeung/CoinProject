@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder
 import kuma.coinproject.R
 import kuma.coinproject.data.AppRepository
 import kuma.coinproject.data.adapter.model.CoinAdapterItem
-import kuma.coinproject.data.api.AppApiService
 import kuma.coinproject.data.api.CoinApiService
 import kuma.coinproject.ui.adapter.CoinAdapter
 import kuma.coinproject.ui.coin.CoinViewModel
@@ -23,11 +22,6 @@ val appModule = module {
     single {
         AppRepository(get())
     }
-
-    single {
-        AppApiService(get())
-    }
-
 }
 
 val apiModule = module {

@@ -3,9 +3,9 @@ package kuma.coinproject.data
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kuma.coinproject.data.adapter.model.CoinAdapterItem
-import kuma.coinproject.data.api.AppApiService
+import kuma.coinproject.data.api.CoinApiService
 
-class AppRepository(private val apiService: AppApiService) {
+class AppRepository(private val apiService: CoinApiService) {
 
     companion object{
          val IO = Dispatchers.IO
@@ -20,7 +20,7 @@ class AppRepository(private val apiService: AppApiService) {
     }.flowOn(IO)
 
     suspend fun coinDetailItem (coinId :String) = flow {
-        val coinDetailItem = apiService.getCoinDetail(coinId)
+        val coinDetailItem = apiService.getCoinDetailItem(coinId)
         emit(coinDetailItem)
     }.flowOn(IO)
 }

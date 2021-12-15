@@ -31,7 +31,7 @@ class CoinDetailViewModel(private val appRepository: AppRepository) : ViewModel(
                     println("완료")
                     _isProgress.value = false
                 }
-                .catch {cause->
+                .catch { cause->
                     println("catch $cause")
                     _isProgress.value = false
                 }
