@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="onItemClick"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="coinViewModel"
+            type="kuma.coinproject.ui.coin.CoinViewModel" />
+        <variable
+            name="coinId"
+            type="String" />
+
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/item_coin_rank"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:onClick="@{()->coinViewModel.onCoinClick(coinId)}"
+        android:textSize="20dp"
+        android:layout_width="70dp"
+        tools:text="1"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/item_coin_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="20dp"
+        tools:text="BTC"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="@id/item_coin_rank"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
