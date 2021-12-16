@@ -16,6 +16,7 @@ abstract class BaseListAdapter<T, VH : RecyclerView.ViewHolder,VM : ViewModel>(
     diffUtil: DiffUtil.ItemCallback<T>
 ) : androidx.recyclerview.widget.ListAdapter<T, VH>(diffUtil) {
 
+    //최초 onCreateViewHolder 쪽에서 viewDataBinding 을 만드록 viewHolder 를 만드는 함수  
     @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
 
@@ -39,7 +40,6 @@ abstract class BaseListAdapter<T, VH : RecyclerView.ViewHolder,VM : ViewModel>(
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         return viewHolder
     }
 

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "kuma.coinproject"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -83,6 +83,9 @@ dependencies {
 
     //paging
     implementation("androidx.paging:paging-runtime:$rootProject.pagingVersion")
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     testImplementation("androidx.paging:paging-common:$rootProject.pagingVersion")
     testImplementation 'junit:junit:4.+'

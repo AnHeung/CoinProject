@@ -11,10 +11,10 @@ import kuma.coinproject.ui.base.BaseViewModel
 
 class CoinViewModel(private val appRepository: AppRepository) : BaseViewModel() {
 
-    private val _coinClick: MutableLiveData<Coin> = MutableLiveData()
+    private val _coinClick: MutableLiveData<Coin> = MutableLiveData() 
 
-    val coins: LiveData<List<Coin>> = appRepository.getCoins()
-    val coinClick: LiveData<Coin> = _coinClick
+    val coins: LiveData<List<Coin>> = appRepository.getCoins() //db쪽 데이터와 연동할 coins
+    val coinClick: LiveData<Coin> = _coinClick //코인아이템 개별 클릭 이벤트용
 
     init {
         getCoinList()

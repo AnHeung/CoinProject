@@ -25,16 +25,12 @@ class CoinFragment(override var layoutId: Int = R.layout.fragment_coin) :
 
     override fun bindingLiveData() {
         coinViewModel.apply {
-
             coins.observe(viewLifecycleOwner, {
-                println("넘어옴? ")
-                coinAdapter.submitList(it)
+                coinAdapter.submitList(it.take(100))
             })
 
             coinClick.observe(viewLifecycleOwner, { item ->
-                println("왜 안됨?")
                 if (isLiveDataResume()) {
-                    println("coin Click  $")
                     navigate(CoinFragmentDirections.actionCoinFragmentToCoinDetailFragment(item.id, item.name))
                 }
             })

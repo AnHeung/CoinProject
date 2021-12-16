@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
+//기본 fragment 클래스 livedata 와 inflate 를 진행한다.
 abstract class BaseFragment<V: ViewDataBinding> : Fragment(){
 
     protected lateinit var dataBinding: V

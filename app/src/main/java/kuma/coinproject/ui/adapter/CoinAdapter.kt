@@ -27,7 +27,7 @@ class CoinAdapter(
                 item?.let { coin->
                     coinViewModel = viewModel
                     coinItem = item
-                    itemCoinRank.text = coin.rank.toString()
+                    itemCoinRank.text = coin.rank
                     itemCoinName.text = coin.name
                 }
             }
