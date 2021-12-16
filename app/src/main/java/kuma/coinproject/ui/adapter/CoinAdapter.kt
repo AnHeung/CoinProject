@@ -2,7 +2,7 @@ package kuma.coinproject.ui.adapter
 
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
-import kuma.coinproject.data.adapter.model.CoinAdapterItem
+import kuma.coinproject.data.db.model.Coin
 import kuma.coinproject.databinding.ItemCoinBinding
 import kuma.coinproject.ui.base.BaseListAdapter
 import kuma.coinproject.ui.base.BaseViewHolder
@@ -12,26 +12,25 @@ class CoinAdapter(
     coinViewModel: CoinViewModel,
     clazz: Class<CoinViewHolder>,
     @LayoutRes layoutId : Int,
-    comparator : DiffUtil.ItemCallback<CoinAdapterItem>,
-) : BaseListAdapter<CoinAdapterItem, CoinAdapter.CoinViewHolder , CoinViewModel>(coinViewModel, clazz, layoutId, comparator){
+    comparator : DiffUtil.ItemCallback<Coin>,
+) : BaseListAdapter<Coin, CoinAdapter.CoinViewHolder , CoinViewModel>(coinViewModel, clazz, layoutId, comparator){
 
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         holder.bind(getItem(position) , viewModel)
     }
 
-    class CoinViewHolder(binding: ItemCoinBinding) :BaseViewHolder<ItemCoinBinding, CoinAdapterItem, CoinViewModel>(binding){
+    class CoinViewHolder(binding: ItemCoinBinding) :BaseViewHolder<ItemCoinBinding, Coin, CoinViewModel>(binding){
 
-        override fun bind(item: CoinAdapterItem?, viewModel: CoinViewModel) {
+        override fun bind(item: Coin?, viewModel: CoinViewModel) {
             binding.apply {
-                item?.apply {
+                item?.let { coin->
                     coinViewModel = viewModel
-                    coinId = id
-                    itemCoinRank.text = rank
-                    itemCoinName.text = name
+                    coinItem = item
+                    itemCoinRank.text = coin.rank.toString()
+                    itemCoinName.text = coin.name
                 }
             }
         }
     }
-
 }

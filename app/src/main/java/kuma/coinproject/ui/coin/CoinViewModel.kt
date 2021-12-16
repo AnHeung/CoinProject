@@ -2,49 +2,42 @@ package kuma.coinproject.ui.coin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kuma.coinproject.data.AppRepository
-import kuma.coinproject.data.adapter.model.CoinAdapterItem
+import kuma.coinproject.data.db.model.Coin
+import kuma.coinproject.repository.AppRepository
+import kuma.coinproject.ui.base.BaseViewModel
 
-class CoinViewModel(private val appRepository: AppRepository) : ViewModel() {
+class CoinViewModel(private val appRepository: AppRepository) : BaseViewModel() {
 
-    private val _coinList: MutableLiveData<List<CoinAdapterItem>> = MutableLiveData(listOf())
-    private val _coinClick : MutableLiveData<String?>  = MutableLiveData("")
-    private val _isProgress: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _coinClick: MutableLiveData<Coin> = MutableLiveData()
 
+    val coins: LiveData<List<Coin>> = appRepository.getCoins()
+    val coinClick: LiveData<Coin> = _coinClick
 
-    val coinList: LiveData<List<CoinAdapterItem>> = _coinList
-    val isProgress: LiveData<Boolean> = _isProgress
-    val coinClick : LiveData<String?>  = _coinClick
+    init {
+        getCoinList()
+    }
 
-    fun getCoinList() {
+    fun getCoinList(){
         viewModelScope.launch {
-            appRepository.coinList()
-                .onStart { _isProgress.value = true }
+            appRepository
+                .fetchCoinList()
+                .onStart { progressOn() }
                 .onCompletion { cause ->
                     cause?.let { println("완료") }
-                    _isProgress.value = false
+                    progressOff()
                 }
                 .catch { cause ->
-                    println("getList Exception : $cause")
-                    _isProgress.value = false
-                }
-                .collect {
-                    _coinList.value = it
-                    println("도착")
-                }
+                    println("getCoinList Exception : $cause")
+                    progressOff()
+                }.collect()
         }
     }
 
-    fun onCoinClick(coinName : String?){
-        println("coinName: $coinName")
-        coinName?.let {
+    fun onCoinClick(coinItem: Coin?) {
+        coinItem?.let {
             _coinClick.value = it
         }
     }

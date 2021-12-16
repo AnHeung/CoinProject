@@ -1,4 +1,4 @@
-package kuma.coinproject.utils
+package kuma.coinproject.ui.adapter
 
 import android.view.View
 import android.view.WindowManager
@@ -6,6 +6,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import kuma.coinproject.utils.getParentActivity
+import kuma.coinproject.utils.makeGone
+import kuma.coinproject.utils.makeVisible
 
 @BindingAdapter("isProgress")
 fun setProgress(view: View, isProgress: LiveData<Boolean>?) {

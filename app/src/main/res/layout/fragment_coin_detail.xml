@@ -1,56 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="kuma.coinproject.ui.coin_detail.CoinDetailViewModel" />
 
     </data>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.coin_detail.CoinDetailFragment">
-
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        tools:context=".ui.coin_detail.CoinDetailFragment">
 
-    <TextView
-        android:id="@+id/coin_detail_name_txt"
-        android:gravity="center"
-        tools:text="test"
-        setText="@{viewModel.name}"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
-    <TextView
-        android:id="@+id/coin_detail_description_txt"
-        android:gravity="center"
-        tools:text="test"
-        setText="@{viewModel.description}"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+            <androidx.appcompat.widget.Toolbar
+                app:navigationIcon="@drawable/ic_arrow_24"
+                android:id="@+id/detail_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/coin_detail_first_data_at_txt"
-        android:gravity="center"
-        tools:text="test"
-        setText="@{viewModel.firstDataAt}"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-     <ProgressBar
-         android:layout_gravity="center"
-         isProgress="@{viewModel.isProgress}"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+        <FrameLayout
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</FrameLayout>
+            <ProgressBar
+                isProgress="@{viewModel.isProgress}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/coin_detail_name_txt"
+                        setText="@{viewModel.name}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        tools:text="test" />
+
+
+                    <TextView
+                        android:id="@+id/coin_detail_first_data_at_txt"
+                        setText="@{viewModel.firstDataAt}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        tools:text="test" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/coin_detail_description_txt"
+                    setText="@{viewModel.description}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:scrollbars="vertical"
+                    tools:text="test" />
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

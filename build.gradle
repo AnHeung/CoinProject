@@ -18,6 +18,7 @@ buildscript {
         loggerVersion = '2.2.0'
         roomVersion = '2.3.0'
         koinVersion = '2.1.5'
+        pagingVersion = '2.1.2'
         // testing
         junitVersion = '4.13.1'
         espressoVersion = '3.1.0'

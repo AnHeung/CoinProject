@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="item_coin_margin">10dp</dimen>
+    <dimen name="item_coin_rank_margin">5dp</dimen>
+    <dimen name="item_coin_rank_width">60dp</dimen>
+    <dimen name="item_coin_margin_left">30dp</dimen>
+    <dimen name="item_coin_font_size">15dp</dimen>
+</resources>

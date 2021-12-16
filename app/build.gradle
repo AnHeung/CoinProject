@@ -81,6 +81,10 @@ dependencies {
     implementation "com.orhanobut:logger:$rootProject.loggerVersion"
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
+    //paging
+    implementation("androidx.paging:paging-runtime:$rootProject.pagingVersion")
+
+    testImplementation("androidx.paging:paging-common:$rootProject.pagingVersion")
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

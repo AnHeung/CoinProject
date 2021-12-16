@@ -8,36 +8,49 @@
             name="coinViewModel"
             type="kuma.coinproject.ui.coin.CoinViewModel" />
         <variable
-            name="coinId"
-            type="String" />
+            name="coinItem"
+            type="kuma.coinproject.data.db.model.Coin" />
 
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:onClick="@{()->coinViewModel.onCoinClick(coinId)}"
+    android:onClick="@{()->coinViewModel.onCoinClick(coinItem)}"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:background="@drawable/circle_shape"
+        android:id="@+id/item_coin_rank_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="@dimen/item_coin_rank_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="@dimen/item_coin_rank_width"
+        android:layout_height="0dp">
 
     <TextView
         android:id="@+id/item_coin_rank"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
         android:gravity="center"
-        android:textSize="20dp"
-        android:layout_width="70dp"
+        android:textSize="@dimen/item_coin_font_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:text="1"
-        android:layout_height="match_parent"/>
+        />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/item_coin_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/item_coin_margin_left"
+        android:textSize="@dimen/item_coin_font_size"
         tools:text="BTC"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="@id/item_coin_rank"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toRightOf="@id/item_coin_rank_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
 

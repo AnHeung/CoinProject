@@ -6,34 +6,33 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import kuma.coinproject.data.AppRepository
+import kuma.coinproject.repository.AppRepository
 import kuma.coinproject.data.api.model.CoinDetailItem
+import kuma.coinproject.ui.base.BaseViewModel
 import kuma.coinproject.utils.formatDate
+import kuma.coinproject.utils.orNoInfomation
 import kuma.coinproject.utils.orZero
 
-class CoinDetailViewModel(private val appRepository: AppRepository) : ViewModel(){
+class CoinDetailViewModel(private val appRepository: AppRepository) : BaseViewModel(){
 
     private val _coinDetailItem : MutableLiveData<CoinDetailItem> = MutableLiveData()
-    private val _isProgress : MutableLiveData<Boolean> = MutableLiveData(false)
-
-    val isProgress : LiveData<Boolean> = _isProgress
 
     val name : LiveData<String> = _coinDetailItem.map { it.name.orZero() }
-    val description : LiveData<String> = _coinDetailItem.map { it.description.orZero() }
+    val description : LiveData<String> = _coinDetailItem.map { it.description.orNoInfomation() }
     val firstDataAt : LiveData<String> = _coinDetailItem.map { it.first_data_at.formatDate() }
 
     fun getCoinDetailItem(coinId: String){
         viewModelScope.launch {
             appRepository
-                .coinDetailItem(coinId)
-                .onStart { _isProgress.value = true }
+                .fetchCoinDetailItem(coinId)
+                .onStart { progressOn() }
                 .onCompletion {
                     println("완료")
-                    _isProgress.value = false
+                    progressOff()
                 }
                 .catch { cause->
                     println("catch $cause")
-                    _isProgress.value = false
+                    progressOff()
                 }
                 .collect {
                     println("완료 $it" )
