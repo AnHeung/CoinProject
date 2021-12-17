@@ -8,3 +8,4 @@ const val NO_COIN_INFORMATION = "코인 정보가 없습니다"
 const val COIN_DATABASE = "COIN_DATABASE"
 const val COIN_TABLE = "COIN_TABLE"
 const val BASE_COIN_IMAGE_URL = "https://bitcoin.org/img/icons/opengraph.png?1637078881"
+const val PAGING_COUNT = 30

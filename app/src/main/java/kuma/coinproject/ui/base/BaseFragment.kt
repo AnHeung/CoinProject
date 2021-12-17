@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
 //기본 fragment 클래스 livedata 와 inflate 를 진행한다.
 abstract class BaseFragment<V: ViewDataBinding> : Fragment(){
@@ -28,13 +29,13 @@ abstract class BaseFragment<V: ViewDataBinding> : Fragment(){
         return with(dataBinding){
             lifecycleOwner = viewLifecycleOwner
             initBinding()
+            bindingLiveData()
             executePendingBindings()
             dataBinding.root
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        bindingLiveData()
+    fun showSnackBar(msg:String?){
+        msg?.let { Snackbar.make(dataBinding.root, it, Snackbar.LENGTH_SHORT).show() }
     }
 }

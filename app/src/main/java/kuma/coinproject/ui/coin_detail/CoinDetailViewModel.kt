@@ -31,16 +31,12 @@ class CoinDetailViewModel(private val appRepository: AppRepository) : BaseViewMo
             appRepository
                 .fetchCoinDetailItem(coinId)
                 .onStart { progressOn() }
-                .onCompletion {
-                    println("완료")
-                    progressOff()
-                }
+                .onCompletion { progressOff() }
                 .catch { cause->
                     println("catch $cause")
                     progressOff()
                 }
                 .collect {
-                    println("완료 $it" )
                     _coinDetailItem.value = it
                 }
         }

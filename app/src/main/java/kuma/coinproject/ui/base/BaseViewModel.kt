@@ -8,6 +8,16 @@ import androidx.lifecycle.ViewModel
 open class BaseViewModel : ViewModel(){
     private val _isProgress  : MutableLiveData<Boolean> =  MutableLiveData(false)
     val isProgress  : LiveData<Boolean> =  _isProgress
+    private val _snackBar  : MutableLiveData<Result> =  MutableLiveData()
+    val snackBar  : LiveData<Result> =  _snackBar
     fun progressOn(){ _isProgress.value = true }
     fun progressOff(){ _isProgress.value = false }
+
+    fun snackBarOn(result: Result?){
+        result?.let { _snackBar.value = it }
+    }
+
+    enum class Result {
+        SUCCESS , FAIL
+    }
 }

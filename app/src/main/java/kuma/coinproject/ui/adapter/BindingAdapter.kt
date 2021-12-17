@@ -7,11 +7,10 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.squareup.picasso.Picasso
-import kuma.coinproject.R
 import kuma.coinproject.utils.getParentActivity
 import kuma.coinproject.utils.makeGone
 import kuma.coinproject.utils.makeVisible
+import kuma.coinproject.utils.setImageToUrl
 
 //프로그래스바 처리를 위한 바인딩 어댑터
 @BindingAdapter("isProgress")
@@ -57,11 +56,7 @@ fun setImage(imageView:ImageView , imageLiveData: LiveData<String>?){
 
     if (parentActivity != null && imageLiveData != null) {
         imageLiveData.observe(parentActivity , Observer { imageUrl->
-            Picasso.get()
-                .load(imageUrl)
-                .fit()
-                .error(R.drawable.no_image)
-                .into(imageView)
+            imageView.setImageToUrl(imageUrl)
         })
     }
 }

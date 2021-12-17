@@ -30,6 +30,6 @@ class AppRepository(private val apiService: CoinApiService,  private val coinDao
     }.flowOn(IO)
 
 
-    fun getCoins() = coinDao.getCoinList().asLiveData()
+    fun getCoins() = coinDao.getCoinList()
 
 }
