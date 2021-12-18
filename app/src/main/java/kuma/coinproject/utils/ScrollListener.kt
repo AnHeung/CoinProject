@@ -4,8 +4,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.orhanobut.logger.Logger
-import kotlin.math.ceil
 
 abstract class ScrollListener : RecyclerView.OnScrollListener {
     //로딩하기 전에 현재 스크롤 위치 아래에 있는 최소한의 아이템 수
@@ -93,29 +91,8 @@ abstract class ScrollListener : RecyclerView.OnScrollListener {
             onLoadMore(currentPage, totalItemCount, view)
             loading = true
         }
-        try {
-            val layoutHeight = layoutManager.height.toDouble()
-            val childItemHeight = if (layoutManager.childCount > 0) layoutManager.getChildAt(0)?.height?.toDouble()?:0.toDouble() else 0.toDouble()
-
-            val acceptableChildCount = ceil(layoutHeight / childItemHeight)
-            if (totalItemCount >= acceptableChildCount && !view.canScrollVertically(1)) {
-                onBottom(true)
-            } else {
-                onBottom(false)
-            }
-        } catch (e: NullPointerException) {
-            Logger.e("BottomDetectedScrollListener NullPoint : " + e.message)
-        }
-    }
-
-    //새로운 검색 수행시 마다 메소드 호출
-    fun resetState() {
-        currentPage = startingPageIndex
-        previousTotalItemCount = 0
-        loading = true
     }
 
     //페이지를 기반으로 실제 더 많은 데이터를 로드하는 프로세스 정의
     abstract fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?)
-    abstract fun onBottom(isBottom: Boolean)
 }

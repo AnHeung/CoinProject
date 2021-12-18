@@ -2,13 +2,11 @@ package kuma.coinproject.di.module
 
 import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import kuma.coinproject.R
-import kuma.coinproject.repository.AppRepository
 import kuma.coinproject.data.api.CoinApiService
 import kuma.coinproject.data.db.CoinRoomDatabase
 import kuma.coinproject.data.db.model.Coin
+import kuma.coinproject.repository.AppRepository
 import kuma.coinproject.ui.adapter.CoinAdapter
 import kuma.coinproject.ui.coin.CoinViewModel
 import kuma.coinproject.ui.coin_detail.CoinDetailViewModel
@@ -17,7 +15,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,10 +23,6 @@ val appModule = module {
 
     single {
         AppRepository(get(),get())
-    }
-
-    single(named("scope")) {
-        CoroutineScope(SupervisorJob())
     }
 }
 
@@ -67,10 +60,10 @@ val apiModule = module {
 
 val dbModule = module {
     single {
-        CoinRoomDatabase.getDatabase(androidContext(), get(named("scope"))).coinDao()
+        CoinRoomDatabase.getDatabase(androidContext()).coinDao()
     }
     single {
-        CoinRoomDatabase.getDatabase(androidContext(), get(named("scope")))
+        CoinRoomDatabase.getDatabase(androidContext())
     }
 }
 

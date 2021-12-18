@@ -13,6 +13,7 @@ import kuma.coinproject.utils.isLiveDataResume
 import kuma.coinproject.utils.navigate
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class CoinFragment(override var layoutId: Int = R.layout.fragment_coin) :
     BaseFragment<FragmentCoinBinding>() {
@@ -26,16 +27,13 @@ class CoinFragment(override var layoutId: Int = R.layout.fragment_coin) :
                 try {
                     val loadingNum = (page - 1) * PAGING_COUNT
                     val adapterListCount = coinAdapter.itemCount
-                    println("loadingNum : $loadingNum adapterListCount : $adapterListCount")
                     if (loadingNum in 1..adapterListCount) {
                         coinViewModel.appendList(page)
                     }
                 } catch (e: Exception) {
-                    println("onLoadMore Exception : $e")
+                    Timber.e("onLoadMore Exception : $e")
                 }
             }
-
-            override fun onBottom(isBottom: Boolean) {}
         }
     }
 
@@ -74,8 +72,8 @@ class CoinFragment(override var layoutId: Int = R.layout.fragment_coin) :
                 if (isLiveDataResume()) {
                     result?.apply {
                         when (this) {
-                            BaseViewModel.Result.SUCCESS -> showSnackBar(getString(R.string.app_name))
-                            BaseViewModel.Result.FAIL -> showSnackBar(getString(R.string.app_name))
+                            BaseViewModel.Result.SUCCESS -> showSnackBar(getString(R.string.get_coin_list_success_msg))
+                            BaseViewModel.Result.FAIL -> showSnackBar(getString(R.string.get_coin_fail_msg))
                         }
                     }
                 }

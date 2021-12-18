@@ -8,6 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import timber.log.Timber
 
 abstract class BaseListAdapter<T, VH : RecyclerView.ViewHolder,VM : ViewModel>(
     val viewModel: VM,
@@ -38,7 +39,7 @@ abstract class BaseListAdapter<T, VH : RecyclerView.ViewHolder,VM : ViewModel>(
                 }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Timber.e("onCreateViewHolder $e")
         }
         return viewHolder
     }

@@ -45,12 +45,12 @@ dependencies {
 
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.legacySupportVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
@@ -78,13 +78,13 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$rootProject.navVersion")
 
     //Logger
-    implementation "com.orhanobut:logger:$rootProject.loggerVersion"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttp3Logger"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
     //picasso
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
 }
