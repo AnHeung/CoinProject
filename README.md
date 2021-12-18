@@ -7,6 +7,7 @@
 - flow 
 - databinding
 - bindingAdapter
+- room
 - coroutine
 - navigation (jetpack)
 - retrofit2
