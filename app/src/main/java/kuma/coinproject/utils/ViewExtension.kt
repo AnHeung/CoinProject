@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kuma.coinproject.R
-import java.lang.Exception
+import timber.log.Timber
 
 
 fun View.getParentActivity(): AppCompatActivity? {
@@ -37,6 +37,6 @@ fun ImageView.setImageToUrl(imageUrl: String ) {
             .error(R.drawable.no_image)
             .into(this)
     }catch (e : Exception){
-        println("setImageToUrl Exception: $e")
+        Timber.e("setImageToUrl Exception: $e")
     }
 }

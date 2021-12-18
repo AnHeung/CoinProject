@@ -10,6 +10,7 @@ import kuma.coinproject.data.db.model.Coin
 import kuma.coinproject.repository.AppRepository
 import kuma.coinproject.ui.base.BaseViewModel
 import kuma.coinproject.utils.PAGING_COUNT
+import timber.log.Timber
 
 class CoinViewModel(private val appRepository: AppRepository) : BaseViewModel() {
 
@@ -33,12 +34,12 @@ class CoinViewModel(private val appRepository: AppRepository) : BaseViewModel() 
                 .fetchCoinList()
                 .onStart { progressOn() }
                 .onCompletion { throwable ->
-                    throwable?.let { println("onCompletion 오류 발생 :$throwable") }
+                    throwable?.let { Timber.e("onCompletion 오류 발생 :$throwable") }
                     snackBarOn(Result.SUCCESS)
                     progressOff()
                 }
                 .catch { cause ->
-                    println("getCoinList catch Error : $cause")
+                    Timber.e("getCoinList catch Error : $cause")
                     snackBarOn(Result.FAIL)
                     progressOff()
                 }.collect()

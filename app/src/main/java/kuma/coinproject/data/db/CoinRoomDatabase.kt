@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.CoroutineScope
 import kuma.coinproject.data.db.model.Coin
 import kuma.coinproject.utils.COIN_DATABASE
 
@@ -18,7 +17,7 @@ abstract class CoinRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: CoinRoomDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): CoinRoomDatabase {
+        fun getDatabase(context: Context): CoinRoomDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,

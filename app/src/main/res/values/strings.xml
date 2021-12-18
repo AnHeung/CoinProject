@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">CoinProject</string>
     <string name="no_information">코인 정보가 없습니다.</string>
+    <string name="get_coin_list_success_msg">코인 목록 가져오기 성공</string>
+    <string name="get_coin_fail_msg">코인 목록 가져오기 실패</string>
+    <string name="get_coin_detail_success_msg">코인 상세 목록 가져오기 성공</string>
+    <string name="get_coin_detail_fail_msg">코인 상세 목록 가져오기 실패</string>
     <string name="coin_name">코인명</string>
     <string name="ranking">랭킹</string>
     <string name="first_date_at">최초 등록일</string>

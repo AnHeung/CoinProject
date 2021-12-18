@@ -15,6 +15,7 @@ import kuma.coinproject.ui.base.BaseViewModel
 import kuma.coinproject.utils.formatDate
 import kuma.coinproject.utils.orNoInformation
 import kuma.coinproject.utils.orZero
+import timber.log.Timber
 
 class CoinDetailViewModel(private val appRepository: AppRepository) : BaseViewModel(){
 
@@ -31,10 +32,14 @@ class CoinDetailViewModel(private val appRepository: AppRepository) : BaseViewMo
             appRepository
                 .fetchCoinDetailItem(coinId)
                 .onStart { progressOn() }
-                .onCompletion { progressOff() }
-                .catch { cause->
-                    println("catch $cause")
+                .onCompletion {
                     progressOff()
+                    snackBarOn(Result.SUCCESS)
+                }
+                .catch { cause->
+                    Timber.e("catch $cause")
+                    progressOff()
+                    snackBarOn(Result.FAIL)
                 }
                 .collect {
                     _coinDetailItem.value = it
